@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="{% static 'unpoly.css' %}">
+  <link rel="stylesheet" href="{% static 'unpoly-bootstrap5.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+
+  <script src="{% static 'unpoly.js' %}"></script>
+  <script src="{% static 'unpoly-bootstrap5.js' %}"></script>
+</head>
+<body>
+
+<header class="d-flex justify-content-center py-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+    <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link" up-follow>Profile</a></li>
+    <li class="nav-item"><a href="{% url 'form' %}" class="nav-link" up-layer="new">Form</a></li>
+    <li class="nav-item"><a href="{% url 'autocomplete' %}" class="nav-link" up-follow>Autocomplete</a></li>
+  </ul>
+</header>
+
+<div id="messages" up-hungry>
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<main>
+  {% block body %}
+  {% endblock body %}
+</main>
+</body>
+</html>
